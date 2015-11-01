@@ -5,11 +5,11 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DbLibs.Interfaces;
-using DbLibs.Properties;
-using DbLibs.Models;
+using DbBench.Models;
+using DbBench.Interfaces;
+using DbLib.ADO.Properties;
 
-namespace DbLibs
+namespace DbBench
 {
     public class AdoDb : IDataAccess
     {
@@ -28,7 +28,7 @@ namespace DbLibs
                         {
                             yield return new Product()
                             {
-                                ProductId = int.Parse(reader["ProductId"].ToString()),
+                                ProductId = Guid.Parse(reader["ProductId"].ToString()),
                                 ProductName = reader["ProductName"].ToString(),
                                 ProductDescription = reader["ProductDescription"].ToString(),
                                 Quantity = int.Parse(reader["Quantity"].ToString()),
@@ -43,7 +43,15 @@ namespace DbLibs
 
         public void Insert(Product product)
         {
-            throw new NotImplementedException();
+            string query = string.Format("INSERT INTO BenchDb (ProductName,ProductDescription,Quantity,IsOnSale) VALUES({0},{1},{2},{3})", product.ProductName, product.ProductDescription, product.Quantity, product.IsOnSale);
+            using (var connection = new SqlConnection(Settings.Default.ProductContext))
+            {
+                using (var command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

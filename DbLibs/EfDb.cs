@@ -5,11 +5,11 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
-using DbLibs.Interfaces;
-using DbLibs.Models;
-using DbLibs.Properties;
+using DbBench.Interfaces;
+using DbBench.Models;
+using DbBench.Properties;
 
-namespace DbLibs
+namespace DbBench
 {
     public class EfDb : IDataAccess
     {

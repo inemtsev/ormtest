@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DbLibs.Models
+namespace DbBench.Models
 {
     public class Product
     {
         [Key]
-        public int ProductId { get; set; }
+        public Guid ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public int Quantity { get; set; }

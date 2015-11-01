@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbBench", "DbBench\DbBench.csproj", "{38CE9151-1A8B-46B2-BF97-5FD7F4AE40CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLibs", "DbLibs\DbLibs.csproj", "{061C71A7-AAC0-4957-ACDC-EE4FA2EACDF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib.EF", "DbLibs\DbLib.EF.csproj", "{061C71A7-AAC0-4957-ACDC-EE4FA2EACDF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib.ADO", "DbLib.ADO\DbLib.ADO.csproj", "{8C77BCB6-52F3-479F-BCDF-22E5087C60EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{061C71A7-AAC0-4957-ACDC-EE4FA2EACDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{061C71A7-AAC0-4957-ACDC-EE4FA2EACDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{061C71A7-AAC0-4957-ACDC-EE4FA2EACDF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C77BCB6-52F3-479F-BCDF-22E5087C60EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C77BCB6-52F3-479F-BCDF-22E5087C60EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C77BCB6-52F3-479F-BCDF-22E5087C60EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C77BCB6-52F3-479F-BCDF-22E5087C60EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

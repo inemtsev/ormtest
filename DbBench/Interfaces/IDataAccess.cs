@@ -4,11 +4,11 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using DbLibs.Models;
+using DbBench.Models;
 
-namespace DbLibs.Interfaces
+namespace DbBench.Interfaces
 {
-    interface IDataAccess
+    public interface IDataAccess
     {
         IEnumerable<Product> Read(int numberOfProducts);
 
