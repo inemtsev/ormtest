@@ -22,15 +22,5 @@ namespace DbBench.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DEVIANTDEV;Initial Catalog=BenchDb;Integrated Security=True")]
-        public string ProductContext {
-            get {
-                return ((string)(this["ProductContext"]));
-            }
-        }
     }
 }

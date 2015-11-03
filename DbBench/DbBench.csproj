@@ -116,12 +116,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IDataAccess.cs" />
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -132,6 +136,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -169,6 +177,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbLib.ADO\DbLib.ADO.csproj">
+      <Project>{8c77bcb6-52f3-479f-bcdf-22e5087c60ea}</Project>
+      <Name>DbLib.ADO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbLib.Common\DbLib.Common.csproj">
+      <Project>{4e86d2ac-8216-4176-95ef-f07fdeb60235}</Project>
+      <Name>DbLib.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbLib.Dapper\DbLib.Dapper.csproj">
+      <Project>{f35bd1e9-08f5-4b0e-8d7b-d397f84ebf04}</Project>
+      <Name>DbLib.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbLibs\DbLib.EF.csproj">
+      <Project>{061c71a7-aac0-4957-acdc-ee4fa2eacdf4}</Project>
+      <Name>DbLib.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

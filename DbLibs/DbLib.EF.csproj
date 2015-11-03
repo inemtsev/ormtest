@@ -63,14 +63,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DbBench\DbBench.csproj">
-      <Project>{38ce9151-1a8b-46b2-bf97-5fd7f4ae40cc}</Project>
-      <Name>DbBench</Name>
+    <ProjectReference Include="..\DbLib.Common\DbLib.Common.csproj">
+      <Project>{4e86d2ac-8216-4176-95ef-f07fdeb60235}</Project>
+      <Name>DbLib.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
