@@ -19,13 +19,13 @@ namespace DbLib.Dapper
             this.connString = connectionString;
         }
 
-        public IEnumerable<Product> Read(int numberOfProducts)
+        public Product Read(int idToRead)
         {
-            IEnumerable<Product> data;
-            string query = string.Format("SELECT TOP {0} [ProductName],[ProductDescription],[Quantity],[IsOnSale] FROM BenchDb ORDER BY ProductName", numberOfProducts);
+            Product data;
+            string query = string.Format("SELECT TOP 1 [ProductName],[ProductDescription],[Quantity],[IsOnSale] FROM Products WHERE ProductId = {0}", idToRead);
             using (var conn = new SqlConnection(connString))
             {
-                data = conn.Query<Product>(query);
+                data = conn.Query<Product>(query).Single();
             }
 
             return data;
@@ -33,7 +33,7 @@ namespace DbLib.Dapper
 
         public void Insert(Product product)
         {
-            const string query = "INSERT INTO BenchDb (ProductName,ProductDescription,Quantity,IsOnSale) VALUES(@ProductName,@ProductDescription,@Quantity,@IsOnSale)";
+            const string query = "INSERT INTO Products (ProductName,ProductDescription,Quantity,IsOnSale) VALUES(@ProductName,@ProductDescription,@Quantity,@IsOnSale)";
             using (var conn = new SqlConnection(connString))
             {
                 conn.Query(query, product);

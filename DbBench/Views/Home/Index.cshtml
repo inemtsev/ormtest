@@ -13,49 +13,84 @@
 @section scripts{
     <script>
         $(function() {
-            $('btn-primary btn-lg').on('click', function () {
-                var ormArray = ["Entity Framework 6.1.3", "Dapper 1.4.2", "ADO.NET (SqlDataReader)"];   //Entity=0, Dapper=1, ADO.NET=2
-                var readResults = new Object();
+            $('.btn-primary.btn-lg').on('click', function() {
+                var ormArray = ["Entity Framework 6.1.3", "Dapper 1.4.2", "ADO.NET (SqlDataReader)"]; //Entity=0, Dapper=1, ADO.NET=2
+                var readResults = [];
+                var writeResults = [];
 
-                //First, test the reads
-                ormArray.forEach(function (item, index, arr) {
+                insertToDbUsing(0);
+
+                function readDbUsing(dbType) {
+                    //First, test the reads
                     $.ajax({
-                        url: "http://localhost:53777/ReadEntries?numberOfEntries=" + $('#num-reads').get(0) + "&ormType=" + index,
-                        dataType: "application/json",
-                        contentType: "json",
+                        url: "http://localhost:53777/Home/ReadEntries?numberOfReads=" + $('#num-read').val() + "&ormType=" + dbType,
+                        dataType: "json",
+                        contentType: "application/json",
+                        cache: false
                     }).done(function (result) {
-                        readResults[index] = result.time;
-                    });
-                });
-
-                var data = {
-                    labels: ormArray,
-                    datasets: [
-                        {
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: [readResults[0], readResults[1], readResults[2]]
-                        },
-                        {
-                            fillColor: "rgba(151,187,205,0.5)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
+                        readResults.push(result.time);
+                        dbType++;
+                        if (dbType > ormArray.length - 1) {
+                            drawGraph();
+                            return;
                         }
-                    ]
-                };
 
-                $('#chart-container').show();
-                var resultChart = $("#testChart").get(0).getContent("2d");
-                var newChart = new Chart(resultChart).Bar(data, {});
+                        readDbUsing(dbType);
+                    });
+                }
+
+                function insertToDbUsing(dbType) {
+                    $.ajax({
+                        url: "http://localhost:53777/Home/InsertEntries?numberOfInserts=" + $('#num-insert').val() + "&ormType=" + dbType,
+                        dataType: "json",
+                        contentType: "application/json",
+                        cache: false
+                    }).done(function (result) {
+                        writeResults.push(result.time);
+                        dbType++;
+                        if (dbType > ormArray.length - 1) {
+                            readDbUsing(0);
+                            return;
+                        }
+
+                        insertToDbUsing(dbType);
+                    });
+                }
+
+                function drawGraph() {
+                    var data = {
+                        labels: ormArray,
+                        datasets: [
+                            {
+                                label: "Read",
+                                fillColor: "rgba(220,220,220,0.5)",
+                                strokeColor: "rgba(220,220,220,0.8)",
+                                highlightFill: "rgba(220,220,220,0.75)",
+                                highlightStroke: "rgba(220,220,220,1)",
+                                data: [readResults[0], readResults[1], readResults[2]]
+                            },
+                            {
+                                label: "Write",
+                                fillColor: "rgba(151,187,205,0.5)",
+                                strokeColor: "rgba(151,187,205,0.8)",
+                                highlightFill: "rgba(151,187,205,0.75)",
+                                highlightStroke: "rgba(151,187,205,1)",
+                                data: [writeResults[0],writeResults[1],writeResults[2]]
+                            }
+                        ]
+                    };
+
+                    console.log(readResults);
+                    console.log(writeResults);
+
+                    $('#chart-container').show();
+                    var resultChart = $("#testChart").get(0).getContext("2d");
+                    var newChart = new Chart(resultChart).Bar(data, {});
+                }
 
             });
 
         });
-
-
 
 
     </script>

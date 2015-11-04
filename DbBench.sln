@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib.Common", "DbLib.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib.Dapper", "DbLib.Dapper\DbLib.Dapper.csproj", "{F35BD1E9-08F5-4B0E-8D7B-D397F84EBF04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLib.EF7", "DbLib.EF7\DbLib.EF7.csproj", "{FFBE63AE-2B5B-4635-AAF6-563F2BED0B09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F35BD1E9-08F5-4B0E-8D7B-D397F84EBF04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F35BD1E9-08F5-4B0E-8D7B-D397F84EBF04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F35BD1E9-08F5-4B0E-8D7B-D397F84EBF04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBE63AE-2B5B-4635-AAF6-563F2BED0B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBE63AE-2B5B-4635-AAF6-563F2BED0B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBE63AE-2B5B-4635-AAF6-563F2BED0B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBE63AE-2B5B-4635-AAF6-563F2BED0B09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

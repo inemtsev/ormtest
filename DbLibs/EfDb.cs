@@ -23,10 +23,10 @@ namespace DbBench
 
         
 
-        public IEnumerable<Product> Read(int numberOfProducts)
+        public Product Read(int idToRead)
         {
-            var products = _productsDb.Products.OrderBy(x => x.ProductName).Take(numberOfProducts).ToList();
-            return products;
+            var product = _productsDb.Products.Single(x => x.ProductId == idToRead);
+            return product;
         }
 
         public void Insert(Product product)

@@ -9,7 +9,7 @@ namespace DbBench.Common
 {
     public interface IDataAccess
     {
-        IEnumerable<Product> Read(int numberOfProducts);
+        Product Read(int numberOfProducts);
 
         void Insert(Product product);
     }

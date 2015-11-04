@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DbBench.Common;
 using DbLib.Dapper;
+using Microsoft.Data.Entity;
 
 namespace DbBench
 {

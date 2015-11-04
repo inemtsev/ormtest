@@ -19,9 +19,9 @@ namespace DbBench
             this.connString = connectionString;
         }
 
-        public IEnumerable<Product> Read(int numberOfProducts)
+        public Product Read(int idToRead)
         {
-            string query = string.Format("SELECT TOP {0} [ProductName],[ProductDescription],[Quantity],[IsOnSale] FROM BenchDb ORDER BY ProductName", numberOfProducts);
+            string query = string.Format("SELECT TOP 1 [ProductName],[ProductDescription],[Quantity],[IsOnSale] FROM Products WHERE ProductId = {0}", idToRead);
             using (var connection = new SqlConnection(connString))
             {
                 using (var command = new SqlCommand(query, connection))
@@ -31,7 +31,7 @@ namespace DbBench
                     {
                         while (reader.Read())
                         {
-                            yield return new Product()
+                            return new Product()
                             {
                                 ProductName = reader["ProductName"].ToString(),
                                 ProductDescription = reader["ProductDescription"].ToString(),
@@ -43,11 +43,12 @@ namespace DbBench
                     connection.Close();
                 }
             }
+            throw new Exception("No results were returned for this ID");
         }
 
         public void Insert(Product product)
         {
-            string query = string.Format("INSERT INTO BenchDb (ProductName,ProductDescription,Quantity,IsOnSale) VALUES({0},{1},{2},{3})", product.ProductName, product.ProductDescription, product.Quantity, product.IsOnSale);
+            string query = string.Format("INSERT INTO Products (ProductName,ProductDescription,Quantity,IsOnSale) VALUES('{0}','{1}','{2}','{3}')", product.ProductName, product.ProductDescription, product.Quantity, product.IsOnSale);
             using (var connection = new SqlConnection(connString))
             {
                 using (var command = new SqlCommand(query, connection))
