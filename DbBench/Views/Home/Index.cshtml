@@ -5,8 +5,7 @@
 <div class="jumbotron">
     <h1>ASP.NET MVC Read/Write Test</h1>
     <p class="lead" id="chart-container" style="display:none"><canvas id="testChart" width="400" height="400"></canvas></p>
-    <p>Number of inserts: <input id="num-insert" type="text"/></p>
-    <p>Number of reads: <input id="num-read" type="text"/></p>
+    <p>Number of reads/inserts: <input id="num-read" type="text"/></p>
     <p><a href="#" class="btn btn-primary btn-lg">Run Tests &raquo;</a></p>
 </div>
 
@@ -41,7 +40,7 @@
 
                 function insertToDbUsing(dbType) {
                     $.ajax({
-                        url: "http://localhost:53777/Home/InsertEntries?numberOfInserts=" + $('#num-insert').val() + "&ormType=" + dbType,
+                        url: "http://localhost:53777/Home/InsertEntries?numberOfInserts=" + $('#num-read').val() + "&ormType=" + dbType,
                         dataType: "json",
                         contentType: "application/json",
                         cache: false
@@ -75,17 +74,15 @@
                                 strokeColor: "rgba(151,187,205,0.8)",
                                 highlightFill: "rgba(151,187,205,0.75)",
                                 highlightStroke: "rgba(151,187,205,1)",
-                                data: [writeResults[0],writeResults[1],writeResults[2]]
+                                data: [writeResults[0], writeResults[1], writeResults[2]]
                             }
                         ]
                     };
 
-                    console.log(readResults);
-                    console.log(writeResults);
-
                     $('#chart-container').show();
+                    console.log(data.datasets);
                     var resultChart = $("#testChart").get(0).getContext("2d");
-                    var newChart = new Chart(resultChart).Bar(data, {});
+                    var newChart = new Chart(resultChart).Bar(data, { multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>" });
                 }
 
             });
